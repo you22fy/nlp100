@@ -10,3 +10,4 @@ wheels/
 .venv
 .repo/
 data/
+.env
