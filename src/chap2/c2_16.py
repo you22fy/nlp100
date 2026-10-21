@@ -3,12 +3,13 @@
 """
 
 import random
+from pathlib import Path
 
 
 def main():
-    file_path: str = "data/popular-names.txt"
+    path = Path(__file__).resolve().parents[2] / 'data' / 'popular-names.txt'
 
-    with open(file_path) as f:
+    with open(path) as f:
         lines: list[str] = f.readlines()
 
     random.shuffle(lines)

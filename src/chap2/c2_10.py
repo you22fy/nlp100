@@ -3,10 +3,13 @@
 """
 
 
-def main():
-    file_path: str = "data/popular-names.txt"
+from pathlib import Path
 
-    with open(file_path) as f:
+
+def main():
+    path = Path(__file__).resolve().parents[2] / 'data' / 'popular-names.txt'
+
+    with open(path) as f:
         lines: list[str] = f.readlines()
 
     print(len(lines))

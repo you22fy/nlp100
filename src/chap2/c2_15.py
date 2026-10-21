@@ -3,12 +3,15 @@
 """
 
 
+from pathlib import Path
+
+
 def main():
-    file_path: str = "data/popular-names.txt"
+    path = Path(__file__).resolve().parents[2] / 'data' / 'popular-names.txt'
     n: int = 10
     prefix: str = "data/split_py_"
 
-    with open(file_path) as f:
+    with open(path) as f:
         lines: list[str] = f.readlines()
 
     # 1ファイルあたりの行数 (切り上げ)
