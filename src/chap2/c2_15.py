@@ -3,6 +3,7 @@
 """
 
 
+from itertools import islice
 from pathlib import Path
 
 
@@ -12,19 +13,17 @@ def main():
     prefix: str = "data/split_py_"
 
     with open(path) as f:
-        lines: list[str] = f.readlines()
+        line_count = sum(1 for _ in f)
+        size: int = (line_count + n - 1) // n
+        f.seek(0)
 
-    # 1ファイルあたりの行数 (切り上げ)
-    size: int = (len(lines) + n - 1) // n
-
-    for i in range(n):
-        chunk: list[str] = lines[i * size : (i + 1) * size]
-        if not chunk:
-            break
-        out_path: str = f"{prefix}{i:02d}"
-        with open(out_path, "w") as f:
-            f.writelines(chunk)
-        print(out_path)
+        for i in range(n):
+            if i * size >= line_count:
+                break
+            out_path: str = f"{prefix}{i:02d}"
+            with open(out_path, "w") as out:
+                out.writelines(islice(f, size))
+            print(out_path)
 
 
 if __name__ == "__main__":

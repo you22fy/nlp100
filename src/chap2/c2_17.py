@@ -9,12 +9,10 @@ from pathlib import Path
 def main():
     path = Path(__file__).resolve().parents[2] / 'data' / 'popular-names.txt'
 
-    with open(path) as f:
-        lines: list[str] = f.readlines()
-
     names: set[str] = set()
-    for line in lines:
-        names.add(line.split("\t")[0])
+    with open(path) as f:
+        for line in f:
+            names.add(line.split("\t")[0])
 
     for name in sorted(names):
         print(name)

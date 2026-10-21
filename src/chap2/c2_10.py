@@ -10,9 +10,9 @@ def main():
     path = Path(__file__).resolve().parents[2] / 'data' / 'popular-names.txt'
 
     with open(path) as f:
-        lines: list[str] = f.readlines()
+        count = sum(1 for _ in f)
 
-    print(len(lines))
+    print(count)
 
 
 if __name__ == "__main__":

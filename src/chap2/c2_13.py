@@ -3,6 +3,7 @@
 """
 
 
+from itertools import islice
 from pathlib import Path
 
 
@@ -11,10 +12,8 @@ def main():
     n: int = 10
 
     with open(path) as f:
-        lines: list[str] = f.readlines()
-
-    for line in lines[:n]:
-        print(line.replace("\t", " "), end="")
+        for line in islice(f, n):
+            print(line.replace("\t", " "), end="")
 
 
 if __name__ == "__main__":

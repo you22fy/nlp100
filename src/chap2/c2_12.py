@@ -3,6 +3,7 @@
 """
 
 
+from collections import deque
 from pathlib import Path
 
 
@@ -11,9 +12,9 @@ def main():
     n: int = 10
 
     with open(path) as f:
-        lines: list[str] = f.readlines()
+        lines = deque(f, maxlen=n)
 
-    for line in lines[-n:]:
+    for line in lines:
         print(line, end="")
 
 
